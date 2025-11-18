@@ -1,6 +1,7 @@
 package ee.tuum.assignment.integration;
 
 import ee.tuum.assignment.dto.event.AccountCreationActionEvent;
+import ee.tuum.assignment.enums.Country;
 import ee.tuum.assignment.rabbitConfig.RabbitConfig;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -35,14 +36,11 @@ public class RabbitMQTest {
 	// todo this test only works if i have no other consumer listening to the queue
 	@Test
 	void messageArrivesInAccountEventsQueue() {
-		System.out.println("Queue props: " +
-				rabbitAdmin.getQueueProperties(RabbitConfig.ACCOUNT_EVENTS_QUEUE));
-
 		rabbitAdmin.purgeQueue(RabbitConfig.ACCOUNT_EVENTS_QUEUE, true);
 
 		AccountCreationActionEvent event = new AccountCreationActionEvent(
 				123L,
-				"EE"
+				Country.EE
 		);
 
 		rabbitTemplate.convertAndSend(

@@ -2,6 +2,7 @@ package ee.tuum.assignment.integration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ee.tuum.assignment.dto.response.AccountResponse;
+import ee.tuum.assignment.enums.Country;
 import ee.tuum.assignment.model.Account;
 import ee.tuum.assignment.model.Balance;
 import ee.tuum.assignment.persistence.AccountMapper;
@@ -70,7 +71,7 @@ public class AccountIntegrationTest {
 		assertThat(account).isNotNull();
 		assertThat(account.getId()).isEqualTo(accountId);
 		assertThat(account.getCustomerId()).isEqualTo(1234L);
-		assertThat(account.getCountry()).isEqualTo("EE");
+		assertThat(account.getCountry()).isEqualTo(Country.EE);
 
 		List<Balance> balances = balanceMapper.findByAccountId(accountId);
 		assertThat(balances).hasSize(2);
