@@ -1,6 +1,5 @@
 package ee.tuum.assignment.integration;
 
-
 import ee.tuum.assignment.dto.event.AccountCreationActionEvent;
 import ee.tuum.assignment.rabbitConfig.RabbitConfig;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,7 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
+@SpringBootTest(properties = "spring.rabbitmq.listener.direct.auto-startup=false")
 @AutoConfigureMockMvc
 public class RabbitMQTest {
 
@@ -24,6 +23,14 @@ public class RabbitMQTest {
 
 	@Autowired
 	RabbitAdmin rabbitAdmin;
+
+	@Autowired
+	private SimpleMessageListenerContainer listener;
+
+	@BeforeEach
+	public void setup() {
+		listener.stop();
+	}
 
 	// todo this test only works if i have no other consumer listening to the queue
 	@Test

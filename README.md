@@ -5,7 +5,6 @@
 * Account service keeps track of accounts, their balances, and transactions.
 * Account service must publish all insert and update operations to RabbitMQ.
 
-
 ### How to run application in Docker
 
 In your terminal (in the root of the project) run:
@@ -16,9 +15,41 @@ In your terminal (in the root of the project) run:
 
 Please run the integration tests separately,   
 because when tests are ran together the RabbitMQ integration test fails, because there already is another consumer on it
-1. `docker compose run --rm app test --tests "ee.tuum.assignment.integration.AccountIntegrationTest`
-2. `docker compose run --rm app test --tests "ee.tuum.assignment.integration.TransactionIntegrationTest`
-3. `docker compose run --rm app test --tests "ee.tuum.assignment.integration.RabbitMQTest`
+1. `docker compose run --rm app test --tests "ee.tuum.assignment.integration.AccountIntegrationTest"`
+2. `docker compose run --rm app test --tests "ee.tuum.assignment.integration.TransactionIntegrationTest"`
+3. `docker compose run --rm app test --tests "ee.tuum.assignment.integration.RabbitMQTest"`
+
+Coverage:
+![coverage.png](coverage.png)
+
+### Example curl commands to test endpoints
+OpenAPI: http://localhost:8080/swagger-ui/index.html
+
+POST account:  
+`curl -X POST "http://localhost:8080/account" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "customerId": "1234",
+    "country": "EE",
+    "currencies": ["EUR", "USD"]
+  }''`
+
+GET account:  
+`curl -X GET "http://localhost:8080/account/1"`
+
+POST transaction:  
+`curl -X POST "http://localhost:8080/transaction" \  
+-H "Content-Type: application/json" \  
+-d '{  
+"accountId": 1,  
+"amount": 150,  
+"currency": "EUR",  
+"direction": "IN",  
+"description": "add money"  
+}'`
+
+GET transaction:  
+`curl -X GET http://localhost:8080/transaction/1`
 
 ## Additional Tasks
 

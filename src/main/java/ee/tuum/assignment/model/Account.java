@@ -10,7 +10,7 @@ import java.time.OffsetDateTime;
 public class Account {
 	Long id;
 	Long customerId;
-	String country;
+	String country; // country should also be an ENUM
 	OffsetDateTime createdAt;
 	OffsetDateTime updatedA;
 
