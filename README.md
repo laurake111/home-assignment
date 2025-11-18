@@ -1,4 +1,4 @@
-# Software Engineer Test Assignment (Tuum) - Laura Zirk
+# Software Engineer Test Assignment - Laura Zirk
 
 ### Application description:
 
