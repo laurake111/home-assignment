@@ -22,23 +22,28 @@ because when tests are ran together the RabbitMQ integration test fails, because
 Coverage:
 ![coverage.png](coverage.png)
 
-### Example curl commands to test endpoints
+### Curl commands to test endpoints
 OpenAPI: http://localhost:8080/swagger-ui/index.html
 
-POST account:  
-`curl -X POST "http://localhost:8080/account" \
+POST account:
+```
+curl -X POST http://localhost:8080/account \
   -H "Content-Type: application/json" \
   -d '{
     "customerId": "1234",
     "country": "EE",
     "currencies": ["EUR", "USD"]
-  }''`
+  }
+```  
 
-GET account:  
-`curl -X GET "http://localhost:8080/account/1"`
+GET account:
+```
+curl -X GET http://localhost:8080/account/1
+```
 
-POST transaction:  
-`curl -X POST "http://localhost:8080/transaction" \  
+POST transaction:
+```
+curl -X POST http://localhost:8080/transaction \  
 -H "Content-Type: application/json" \  
 -d '{  
 "accountId": 1,  
@@ -46,10 +51,14 @@ POST transaction:
 "currency": "EUR",  
 "direction": "IN",  
 "description": "add money"  
-}'`
+}'
+```
 
-GET transaction:  
-`curl -X GET http://localhost:8080/transaction/1`
+GET transaction:
+ ```
+curl -X GET http://localhost:8080/transaction/1
+```
+
 
 ## Additional Tasks
 
