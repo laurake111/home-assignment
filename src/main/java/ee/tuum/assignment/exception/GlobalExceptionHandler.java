@@ -1,6 +1,7 @@
 package ee.tuum.assignment.exception;
 
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
+import ee.tuum.assignment.enums.Country;
 import ee.tuum.assignment.enums.Currency;
 import ee.tuum.assignment.enums.Direction;
 import org.springframework.http.HttpStatus;
@@ -24,6 +25,9 @@ public class GlobalExceptionHandler {
 			}
 			if (targetType == Direction.class) {
 				return ResponseEntity.badRequest().body("Invalid direction");
+			}
+			if (targetType == Country.class) {
+				return ResponseEntity.badRequest().body("Invalid country format");
 			}
 		}
 
